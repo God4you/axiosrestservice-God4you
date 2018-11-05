@@ -1,39 +1,39 @@
 import axios, {AxiosResponse, AxiosError} from "../../node_modules/axios/index";
 
-interface ICoin{
+interface ICustomer{
     id : number;
-    genstand: string;
-    bud: number;
-    navn: string;
+    firstName: string;
+    lastName: number;
+    year: string;
     
 }
 
-let allCoins : HTMLDivElement = <HTMLDivElement> document.getElementById("content");
+let allCustomers : HTMLDivElement = <HTMLDivElement> document.getElementById("content");
 let buttonGetAllCustomer : HTMLButtonElement = <HTMLButtonElement> document.getElementById("getAllButton");
-buttonGetAllCustomer.addEventListener("click", showAllCoins);
+buttonGetAllCustomer.addEventListener("click", showAllCustomers);
 
 let addbtn : HTMLButtonElement = <HTMLButtonElement> document.getElementById("addButton");
 addbtn.addEventListener("click", addCustomer);
 
 let getBtn : HTMLButtonElement = <HTMLButtonElement> document.getElementById("getOneButton");
-getBtn.addEventListener("click", showOneCoin;
+getBtn.addEventListener("click", showOneCustomers);
 
 
 
 let uri:string = "https://localhost:44364/api/coin";
 
-function showAllCoin():void{
+function showAllCustomers():void{
 
     /**
      * 
      * Axios get request
      * 
      */
-    axios.get<ICoin[]>(uri)
-    .then(function(respone:AxiosResponse<ICoin[]>):void{ // hvis det går godt
+    axios.get<ICustomer[]>(uri)
+    .then(function(respone:AxiosResponse<ICustomer[]>):void{ // hvis det går godt
         let result:string = "<ol>"
         
-        respone.data.forEach((coin : ICoin) =>{
+        respone.data.forEach((coin : ICustomer) =>{
             if(coin == null) {
                 result += "<li> Null Element <li>";
             }
@@ -45,11 +45,11 @@ function showAllCoin():void{
         
         result += "</ol>";
 
-        allCustomer.innerHTML = result; // alle Customer bliver fremvist nu.
+        allCustomers.innerHTML = result; // alle Customer bliver fremvist nu.
     })
     .catch(function(error:AxiosError):void{ // hvis det går dårligt
         {
-        allCustomer.innerHTML = error.message;
+        allCustomers.innerHTML = error.message;
         }
 
     })
